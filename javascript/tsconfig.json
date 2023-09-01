@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    /* set js version to current */
+    "target": "esnext",
+    /* Allow JavaScript files to be a part of your program */
+    "allowJs": true,
+    /* Enable error reporting in type-checked JavaScript files. */
+    "checkJs": true,
+    /* Disable emitting files from a compilation. 
+       because there is no typescript to transpile */
+    "noEmit": true,
+    /* Enable all strict type-checking options. */
+    "strict": true
+  },
+  "include": ["./*.js"]
+}
