@@ -3,9 +3,14 @@
 CFLAGS="-Werror -Wall -Wpedantic -ggdb"
 
 
-zig cc $CFLAGS -g $1 && chmod +x ./a.out && valgrind --leak-check=yes ./a.out 
+zig cc $CFLAGS -g $1 && chmod +x ./a.out 
 
+if [ "$2" == "-mem" ] || [ "$3" == "-mem" ]; then
+    valgrind --leak-check=yes ./a.out 
+else
+    ./a.out
+fi
 
-if [ "$2" == "-rm" ]; then
+if [ "$2" == "-rm" ] || [ "$3" == "-rm" ]; then
     rm ./a.out
 fi
