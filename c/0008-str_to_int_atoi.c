@@ -1,14 +1,13 @@
-#import <stdio.h>
-#import <string.h>
-#import <stdbool.h>
-#import <limits.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <limits.h>
 
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
 int myAtoi(char * s){
     long val = 0;
-    bool parsedAny = false;
     bool negative = false;
     int i = 0;
     while(s[i] == ' ') {
@@ -34,7 +33,7 @@ int myAtoi(char * s){
     return MIN(val, INT_MAX);
 }
 
-int main(){
+int main(void){
     printf("%d\n", myAtoi("42"));
     printf("%d\n", myAtoi("   -42"));
     printf("%d\n", myAtoi("-91283472332"));

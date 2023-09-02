@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-gcc -g $1 && chmod +x ./a.out && valgrind --leak-check=yes ./a.out && rm ./a.out 
+CFLAGS="-Werror -Wall -Wpedantic -ggdb"
+
+zig cc $CFLAGS -g $1 && chmod +x ./a.out && valgrind --leak-check=yes ./a.out && rm ./a.out 

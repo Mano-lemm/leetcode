@@ -1,6 +1,6 @@
-#import <stdlib.h>
-#import <stdbool.h>
-#import <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 struct ListNode {
     int val;
@@ -30,7 +30,7 @@ struct ListNode* swapNodes(struct ListNode* head, int k){
     return head;
 }
 
-int main(){
+int main(void){
     return 0;
 }
 
