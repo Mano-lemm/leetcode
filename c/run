@@ -2,4 +2,10 @@
 
 CFLAGS="-Werror -Wall -Wpedantic -ggdb"
 
-zig cc $CFLAGS -g $1 && chmod +x ./a.out && valgrind --leak-check=yes ./a.out && rm ./a.out 
+
+zig cc $CFLAGS -g $1 && chmod +x ./a.out && valgrind --leak-check=yes ./a.out 
+
+
+if [ "$2" == "-rm" ]; then
+    rm ./a.out
+fi
