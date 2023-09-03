@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CFLAGS="-Werror -Wall -Wpedantic -ggdb"
+CFLAGS="-Werror -Wall -pedantic -ggdb"
 
 
 zig cc $CFLAGS -g $1 && chmod +x ./a.out 
