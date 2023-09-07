@@ -38,4 +38,5 @@ int main(void){
     for (int i = 0; i < k; i++) {
 	assert(nums_[i] == expectedNums_[i]);
     }
+    return -1;
 }

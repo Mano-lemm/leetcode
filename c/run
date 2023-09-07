@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CFLAGS="-Werror -Wall -Wextra -Wunreachable-code -pedantic -ggdb -fsanitize=address"
-
+CFLAGS="-Werror -Wall -Wextra -Wunreachable-code -pedantic -ggdb -fsanitize=address,undefined"
 
 gcc $CFLAGS -g $1 && chmod +x ./a.out 
 
