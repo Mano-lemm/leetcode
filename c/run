@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-CFLAGS="-Werror -Wall -pedantic -ggdb"
+CFLAGS="-Werror -Wall -Wextra -Wunreachable-code -pedantic -ggdb -fsanitize=address"
 
 
-zig cc $CFLAGS -g $1 && chmod +x ./a.out 
+gcc $CFLAGS -g $1 && chmod +x ./a.out 
 
 if [ "$2" == "-mem" ] || [ "$3" == "-mem" ]; then
-    valgrind --leak-check=yes ./a.out 
+    valgrind -s --leak-check=yes ./a.out 
 else
     ./a.out
 fi
