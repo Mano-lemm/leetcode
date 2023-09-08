@@ -2,5 +2,5 @@
 #[path ="./0189-rotate_array.rs"] mod rotate_array;
 
 fn main() {
-    println!("{:?}", pascals_triangle::Solution::generate(5))
+    println!("{:?}", pascals_triangle::Solution::generate(5));
 }
