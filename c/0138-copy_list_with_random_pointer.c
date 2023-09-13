@@ -22,14 +22,28 @@ void freeLL(struct Node* head){
 
 struct Node* copyRandomList(struct Node* head) {
     if (head == NULL) return NULL;
-    struct Node* tmp = head;
-    while (tmp != NULL) {
+    for (struct Node* cur = head; cur != NULL; cur = cur->next->next) {
 	struct Node* new = malloc(sizeof(struct Node));
-	memcpy(new, tmp, sizeof(struct Node));
-	tmp->next = new;
-	tmp = tmp->next->next;
+	memcpy(new, cur, sizeof(struct Node));
+	cur->next = new;
     }
-    return NULL;
+    struct Node* r = head->next;
+    for (struct Node* cur = r; cur != NULL; cur = cur->next->next) {
+	if (cur->random != NULL) {
+	    cur->random = cur->random->next;
+	}
+	if(cur->next == NULL){
+	    break;
+	}
+    }
+    for (struct Node* cur = head; cur != NULL; cur = cur->next) {
+	struct Node* curr = cur->next;
+	cur->next = cur->next->next;
+	if (curr->next != NULL) {
+	    curr->next = curr->next->next;
+	}
+    }
+    return r;
 }
 
 void printLL(struct Node* head){
@@ -41,7 +55,7 @@ void printLL(struct Node* head){
 	    if (head->random == NULL) {
 		printf("(val: %d, rand: NULL) -> ", head->val);
 	    } else {
-		printf("(val: %d, rand: %d) -> ", head->val, head->random->val);
+		printf("(val: %d, rand: %p) -> ", head->val, (void *)&head->random->val);
 	    }
 	}
 	head = head->next;
@@ -67,8 +81,12 @@ int main(void){
     head->next->next->next->next->next = NULL;
     head->next->next->next->next->random = head;
     head->next->next->random = head->next->next->next->next;
+    printf("Head:\n");
     printLL(head);
     struct Node* copy = copyRandomList(head);
+    printf("Head:\n");
+    printLL(head);
+    printf("Copy:\n");
     printLL(copy);
     freeLL(copy);
     freeLL(head);

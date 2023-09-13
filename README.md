@@ -8,6 +8,7 @@ solution
 
 > nr 33  (bad algorithm)  
 > nr 56  
+> nr 138 (algorithm is O(3n), easily optimisable to O(2n))  
 > nr 239 (mem good but speed bad)  
 > nr 403  
 
