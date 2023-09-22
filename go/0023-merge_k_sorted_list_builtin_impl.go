@@ -1,14 +1,14 @@
-package main;
+package main
 
 import (
-    "container/heap"
+	"container/heap"
 )
 
 type PrioQueue []*ListNode
 
-func (pq PrioQueue) Len() int { return len(pq) }
+func (pq PrioQueue) Len() int           { return len(pq) }
 func (pq PrioQueue) Less(i, j int) bool { return pq[i].Val < pq[j].Val }
-func (pq PrioQueue) Swap(i, j int) { pq[i], pq[j] = pq[j], pq[i] }
+func (pq PrioQueue) Swap(i, j int)      { pq[i], pq[j] = pq[j], pq[i] }
 
 func (pq *PrioQueue) Push(x any) {
 	item := x.(*ListNode)
@@ -25,38 +25,37 @@ func (pq *PrioQueue) Pop() any {
 }
 
 func mergeKLists_builtin(lists []*ListNode) *ListNode {
-    if lists == nil || len(lists) == 0 { 
-        return nil
-    }
-    pq := make(PrioQueue, 0)
-    quit := true
-    for _, v := range lists {
-	if v != nil { 
-	    pq = append(pq, v)
-	    quit = false
+	if lists == nil || len(lists) == 0 {
+		return nil
 	}
-    }
-    if quit {
-	return nil
-    }
-    heap.Init(&pq)
-    tmp := heap.Pop(&pq).(*ListNode)
-    r := &ListNode{tmp.Val, nil}
-    ass := r
-    if tmp.Next != nil {
-	heap.Push(&pq, tmp.Next)
-    }
-    for pq.Len() != 0 {
-	tmp = heap.Pop(&pq).(*ListNode)
-	ass.Next = &ListNode{
-	    Val: tmp.Val, 
-	    Next: nil,
+	pq := make(PrioQueue, 0)
+	quit := true
+	for _, v := range lists {
+		if v != nil {
+			pq = append(pq, v)
+			quit = false
+		}
 	}
-	ass = ass.Next
+	if quit {
+		return nil
+	}
+	heap.Init(&pq)
+	tmp := heap.Pop(&pq).(*ListNode)
+	r := &ListNode{tmp.Val, nil}
+	ass := r
 	if tmp.Next != nil {
-	    heap.Push(&pq, tmp.Next)
+		heap.Push(&pq, tmp.Next)
 	}
-    }
-    return r;
+	for pq.Len() != 0 {
+		tmp = heap.Pop(&pq).(*ListNode)
+		ass.Next = &ListNode{
+			Val:  tmp.Val,
+			Next: nil,
+		}
+		ass = ass.Next
+		if tmp.Next != nil {
+			heap.Push(&pq, tmp.Next)
+		}
+	}
+	return r
 }
-

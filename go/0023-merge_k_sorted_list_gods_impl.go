@@ -5,8 +5,8 @@ import (
 )
 
 type ListNode struct {
-    Val int
-    Next *ListNode
+	Val  int
+	Next *ListNode
 }
 
 func less(a, b interface{}) int {
@@ -15,7 +15,7 @@ func less(a, b interface{}) int {
 
 func mergeKLists(lists []*ListNode) *ListNode {
 	if lists == nil || len(lists) == 0 {
-		return nil;
+		return nil
 	}
 	queue := pq.NewWith(less)
 	for _, v := range lists {
@@ -40,5 +40,5 @@ func mergeKLists(lists []*ListNode) *ListNode {
 			queue.Enqueue(tmp.Next)
 		}
 	}
-	return r.(*ListNode);
+	return r.(*ListNode)
 }
