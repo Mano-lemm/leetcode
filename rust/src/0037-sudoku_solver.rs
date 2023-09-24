@@ -66,6 +66,6 @@ impl Solution {
     }
 
     pub fn solve_sudoku(board: &mut Vec<Vec<char>>) {
-        println!("{:?}", Self::solve_su_rec(board, 0, 0));
+        Self::solve_su_rec(board, 0, 0);
     }
 }
