@@ -1,5 +1,6 @@
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include <vector>
 #include <limits.h>
 #include <stdio.h>
@@ -8,28 +9,28 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
+        unordered_map<char, int> counts;
+        for (char c : s) {
+            if (!counts.contains(c)) {
+                counts.emplace(c, 1);
+            } else {
+                counts[c]++;
+            }
+        }
         unordered_set<char> seen;
         vector<char> rvec;
-        for (int i = 0; i < s.size(); i++) {
-            if (!seen.contains(s[i])) {
-                rvec.push_back(s[i]);
-                seen.insert(s[i]);
+        for (char c : s) {
+            if (seen.contains(c)) {
+                counts[c]--;
                 continue;
             }
-            int location = -1;
-            for (int j = 0; j < rvec.size(); j++) {
-                if (rvec[j] == s[i]) {
-                    location = j;
-                    break;
-                }
+            while (!rvec.empty() && rvec[rvec.size() - 1] > c && counts[rvec[rvec.size() - 1]] > 0) {
+                seen.erase(seen.find(rvec[rvec.size() - 1]));
+                rvec.pop_back();
             }
-            if (location == rvec.size() - 1) {
-                continue;
-            }
-            if (rvec[location] < rvec[location + 1]) {
-                rvec.erase(rvec.begin() + location);
-                rvec.push_back(s[i]);
-            }
+            rvec.push_back(c);
+            counts[c]--;
+            seen.insert(c);
         }
         return string(rvec.begin(), rvec.end());
     }
