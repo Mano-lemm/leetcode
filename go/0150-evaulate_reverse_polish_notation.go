@@ -11,7 +11,7 @@ func (s *stack) push(n int) {
 }
 
 func (s *stack) pop() int {
-	r := (*s)[len(*s) - 1]
+	r := (*s)[len(*s)-1]
 	*s = (*s)[0 : len(*s)-1]
 	return r
 }

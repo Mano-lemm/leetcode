@@ -14,7 +14,7 @@ func longestConsecutive(nums []int) int {
 	for _, val := range sus.Values() {
 		len := 1
 		if sus.Contains(val.(int) + 1) {
-			for sus.Contains(val.(int) + len){
+			for sus.Contains(val.(int) + len) {
 				sus.Remove(val.(int) + len)
 				len++
 			}
