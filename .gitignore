@@ -1,2 +1,4 @@
 rust/target
 **/a.out
+.vs/**
+**.swp
