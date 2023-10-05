@@ -2,3 +2,5 @@ rust/target
 **/a.out
 .vs/**
 **.swp
+/csharp/bin/**
+/csharp/obj/**
