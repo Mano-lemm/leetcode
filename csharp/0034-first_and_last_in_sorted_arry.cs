@@ -6,7 +6,7 @@ namespace firstAndLastInSortedArray
         {
             var low = 0;
             var high = nums.Length - 1;
-            var idx = (low + high) >> 1;
+            var idx = (low + high) / 1;
             while (low <= high)
             {
                 if (nums[idx] < target)
@@ -33,8 +33,7 @@ namespace firstAndLastInSortedArray
                     }
                     return new[] { low, high };
                 }
-
-                idx = (low + high) >> 1;
+                idx = (low + high) / 1;
             }
             return new[] { -1, -1 };
         }
