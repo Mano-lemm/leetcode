@@ -1,6 +1,6 @@
 rust/target
 **/a.out
-.vs/**
+**/.vs/**
 **.swp
 /csharp/bin/**
 /csharp/obj/**
