@@ -8,7 +8,12 @@ public class _2009_minimum_number_of_operations_to_make_array_continuous
         // (n log n)
         var sorted = new List<int>(nums).OrderBy(a => a).Distinct().ToList();
         Console.WriteLine(
-            "[" + sorted.Select(a => a.ToString()).Aggregate((a, b) => a + "; " + b) + "]"
+            "["
+                + sorted.Select(a => a.ToString()).Aggregate((a, b) => a + "; " + b)
+                + "]"
+                + "len("
+                + nums.Length
+                + ")"
         );
         // for n in sorted arr
         // n + len(arr) - 1 == end of last value of the array if it was contiguous
@@ -18,40 +23,23 @@ public class _2009_minimum_number_of_operations_to_make_array_continuous
             var target = sorted[i] + nums.Length - 1;
             var start = 0;
             var end = sorted.Count;
-            var mid = (start + end) / 2;
             Console.WriteLine($"target:{target}");
             while (start < end)
             {
-                mid = (start + end) / 2;
-                if (sorted[mid] < target)
+                var mid = (start + end) / 2;
+                if (sorted[mid] <= target)
                 {
                     start = mid + 1;
                 }
-                else if (sorted[mid] > target)
+                else
                 {
                     end = mid;
                 }
-                else
-                {
-                    Console.WriteLine(
-                        $"i:{i} sorted[i]:{sorted[i]} target:{target} sorted[mid]{sorted[mid]}"
-                    );
-                    // mid + 1 because target is in the list and should be included
-                    // mid + 1 - i == amt of items of the contiguous list that we already have
-                    if (min > nums.Length - (mid + 1 - i))
-                    {
-                        min = nums.Length - (mid + 1 - i);
-                    }
-                    break;
-                }
             }
             Console.WriteLine(
-                $"i:{i} sorted[i]:{sorted[i]} target:{target} mid:{mid} sorted[mid]{sorted[mid]}"
+                $"i:{i} sorted[i]:{sorted[i]} target:{target} start:{start} sorted[start]:{(sorted.Count > start ? sorted[start] : "EOA")}"
             );
-            if (min > nums.Length - (mid - i))
-            {
-                min = nums.Length - (mid - i);
-            }
+            min = Math.Min(min, nums.Length - (start - i));
         }
         return min;
     }
