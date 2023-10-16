@@ -16,4 +16,14 @@ public class _0119_pascals_triangle_II
         }
         return pt;
     }
+
+    public IList<int> GetRow2(int rowIndex)
+    {
+        var pt = new List<int>(rowIndex + 1) { 1 };
+        for (int i = 0; i < rowIndex; i++)
+        {
+            pt.Add((int)(pt[i] * (long)(rowIndex - i) / (i + 1)));
+        }
+        return pt;
+    }
 }
