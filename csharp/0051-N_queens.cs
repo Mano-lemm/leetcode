@@ -4,14 +4,14 @@ namespace csharp;
 
 public class _0051_N_queens
 {
-    private IList<IList<char>> _board;
-    private IList<IList<string>> _r;
+    private IList<IList<char>> _board = new List<IList<char>>();
+    private IList<IList<string>> _r = new List<IList<string>>();
     private int _n;
-    
+
     public IList<IList<string>> SolveNQueens(int n)
     {
-        _board = new List<IList<char>>();
-        _r = new List<IList<string>>();
+        _board.Clear();
+        _r.Clear();
         for (var i = 0; i < n; i++)
         {
             _board.Add(new List<char>());
@@ -36,29 +36,29 @@ public class _0051_N_queens
     {
         for (var i = 1; i < _n; i++)
         {
-            if (InRange(x - i, y - i) &&
-                _board[x - i][y - i] == 'Q') return false;
+            if (InRange(x - i, y - i) && _board[x - i][y - i] == 'Q')
+                return false;
 
-            if (InRange(x - i, y + i) &&
-                _board[x - i][y + i] == 'Q') return false;
-            
-            if (InRange(x + i, y - i) &&
-                _board[x + i][y - i] == 'Q') return false;
+            if (InRange(x - i, y + i) && _board[x - i][y + i] == 'Q')
+                return false;
 
-            if (InRange(x + i, y + i) &&
-                _board[x + i][y + i] == 'Q') return false;
-            
-            if (InRange(x - i, y) &&
-                _board[x - i][y] == 'Q') return false;
+            if (InRange(x + i, y - i) && _board[x + i][y - i] == 'Q')
+                return false;
 
-            if (InRange(x + i, y) &&
-                _board[x + i][y] == 'Q') return false;
-            
-            if (InRange(x, y - i) &&
-                _board[x][y - i] == 'Q') return false;
+            if (InRange(x + i, y + i) && _board[x + i][y + i] == 'Q')
+                return false;
 
-            if (InRange(x, y + i) &&
-                _board[x][y + i] == 'Q') return false;
+            if (InRange(x - i, y) && _board[x - i][y] == 'Q')
+                return false;
+
+            if (InRange(x + i, y) && _board[x + i][y] == 'Q')
+                return false;
+
+            if (InRange(x, y - i) && _board[x][y - i] == 'Q')
+                return false;
+
+            if (InRange(x, y + i) && _board[x][y + i] == 'Q')
+                return false;
         }
         return true;
     }
@@ -67,14 +67,14 @@ public class _0051_N_queens
     {
         if (idx == _n * _n)
         {
-            var containsNQueens = _board
-                .SelectMany(s => s)
-                .Count(c => c == 'Q') == _n;
+            var containsNQueens = _board.SelectMany(s => s).Count(c => c == 'Q') == _n;
             if (containsNQueens)
             {
                 var l = _board
-                    .Select(chars => chars
-                        .Aggregate(new StringBuilder(chars.Count), (s, c) => s.Append(c)))
+                    .Select(
+                        chars =>
+                            chars.Aggregate(new StringBuilder(chars.Count), (s, c) => s.Append(c))
+                    )
                     .Select(sb => sb.ToString())
                     .ToList();
                 _r.Add(l);
