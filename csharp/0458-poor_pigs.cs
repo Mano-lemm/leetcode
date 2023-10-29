@@ -10,4 +10,9 @@ public class _0458_poor_pigs
             c++;
         return c;
     }
+
+
+    public int PoorPigsDirectMath(int buckets, int minutesToDie, int minutesToTest) {
+        return (int)Math.Ceiling(Math.Log(buckets, minutesToTest / minutesToDie + 1));
+    }
 }
