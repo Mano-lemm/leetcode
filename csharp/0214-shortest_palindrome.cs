@@ -14,22 +14,22 @@ public class _0214_shortest_palindrome
         var rchar = s.ToCharArray();
         Array.Reverse(rchar);
         var reverse = new string(rchar);
-        var s_new = s + '#' + reverse;
-        var lookupTable = new int[s_new.Length];
-        for (var i = 1; i < s_new.Length; i++)
+        var sNew = s + '|' + reverse;
+        var lookupTable = new int[sNew.Length];
+        for (var i = 1; i < sNew.Length; i++)
         {
             var cur = lookupTable[i - 1];
-            while (cur > 0 && s_new[i] != s_new[cur])
+            while (cur > 0 && sNew[i] != sNew[cur])
             {
                 cur = lookupTable[cur - 1];
             }
-            if (s_new[i] == s_new[cur])
+            if (sNew[i] == sNew[cur])
             {
                 cur++;
             }
             lookupTable[i] = cur;
         }
 
-        return reverse.Substring(0, s.Length - lookupTable[s_new.Length - 1]) + s;
+        return reverse.Substring(0, s.Length - lookupTable[sNew.Length - 1]) + s;
     }
 }
