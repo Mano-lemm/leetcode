@@ -1,4 +1,10 @@
+/**
+ * @param {Array<any>} arr1
+ * @param {Array<any>} arr2
+ * @return {Array<any>}
+ */
 var join = function(arr1, arr2){
+    /** @type {Object.<number, any>} */
     const result = {};
 
     // add first items
