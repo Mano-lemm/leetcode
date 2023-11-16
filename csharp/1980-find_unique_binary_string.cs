@@ -12,4 +12,12 @@ public class _1980_find_unique_binary_string {
           }
           return sb.ToString();
      }
+     
+     public string FindDifferentBinaryStringLINQ(string[] nums)
+     {
+          return nums
+               .Select((x, i) => x[i] == '1' ? '0' : '1')
+               .Aggregate(new StringBuilder(), (sb, c) => { sb.Append(c); return sb; })
+               .ToString();
+     }
 }
