@@ -20,7 +20,7 @@ void first(Foo *obj)
 {
     printFirst();
     obj->cur = 1;
-    pthread_cond_signal(&obj->cond);
+    pthread_cond_broadcast(&obj->cond);
 }
 
 void second(Foo *obj)
@@ -53,4 +53,5 @@ void fooFree(Foo *obj)
 {
     pthread_cond_destroy(&obj->cond);
     pthread_mutex_destroy(&obj->mut);
+    free(obj);
 }
